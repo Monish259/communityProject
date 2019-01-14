@@ -1,0 +1,118 @@
+<html>
+<head>
+        <style>
+                @media(max-width:768px){
+                  .form-group{
+                    padding:0 10px 0 10px;
+                  }
+                }
+                </style>
+</head>
+<body>
+
+    <%- include('../partials/header', {post: 2,name:data[0].username,data:data}); %>
+    <% include ../partials/sidebarBuilder %>
+
+<div class="align-center-all" style="padding-top: 5%;">
+    <div class="container">
+      <div class="form-horizontal col-sm-3 col-md-3 col-lg-3"></div>
+      <div class="form-horizontal col-sm-6 col-md-6 col-lg-6">
+          <h3 class="page-header" style="color:#707070">Create Community</h3>
+          
+          <form action='/createCommunity' method="POST" enctype="multipart/form-data">
+              <div class="form-group">
+                  <input class="form-control" type="text" required="" name="name" id="name" placeholder="Name" maxlength="70" required>
+              </div>
+              <div class="form-group">
+                      <label style="color:#707070">Description</label>
+                      <textarea class="form-control" rows='10' id='description' name="description" style="overflow:hidden" required></textarea>
+              </div>
+              <div class="form-group ">
+                  <label style="color:#707070">Rule :</label>
+                  <input class="radio radio-inline"  type="radio" checked value="D" id="rule" name="rule"> Direct
+                  <input class="radio radio-inline" type="radio" value="P" id="rule" name="rule"> Permission
+              </div>
+              <div class="form-group" style="display:none;">
+                  <input class="form-control" id="file"  name="communityImage" type="file" />
+              </div>
+  
+              <div class="form-group">
+                <div class="col-xs-4 col-sm-3">
+                    <h6>upload image</h6>
+                   <input type="file" class="form-control" name="img" id="img">
+                </div>
+                <div class="col-xs-8 col-sm-9" style="overflow: scroll;white-space: nowrap;">
+                  <p id="filename" style="font-size:18px;font-weight:bold;color:#707070"></p>
+                </div>
+              </div>
+  
+              <div class="form-group" style="display:none">
+                <div class="col-xs-1 col-sm-1">
+                    <input type="checkbox" class="checkbox-custom" style="outline: none;" id="check" onchange="appendData()" />
+                </div>
+                <div class="col-xs-8 col-sm-9" style="font-weight:bold;margin-top:5px;color:#707070">
+                    Local Community
+                </div>
+              </div>
+  
+              <div class="form-group" id="dynamic">
+  
+              </div>
+              <div class="form-group">
+                      <input class="form-control btn btn-primary" type="submit" value="Create Community" >
+              </div>
+          </form>
+        </div>
+      </div>
+  </div>
+
+  <footer>
+        <% include ../partials/footer %>
+    </footer>
+ 
+    <script type="text/javascript">
+        function appendData(){
+            if($('#check').is(':checked'))
+                $('#dynamic').append('<input type="text" class="form-control" name="communityLocation" placeholder="Location" equired />');
+            else
+            {
+                $('#dynamic').empty();
+            }
+    }
+  </script>
+  <script>
+  $(document).ready(function(){
+      $('#file').change(function(e){
+          var fileName = e.target.files[0].name;
+          $('#filename').text(fileName);
+      });
+  });
+  
+  $.trumbowyg.svgPath = '/Plugins/maileditor/icons.svg';
+  $('#description').trumbowyg({
+    btnsDef: {
+          alert: {
+              fn: function() {
+                  alert('some text')
+              },
+              ico: 'blockquote'
+          }
+      },
+  
+    autogrow: true,
+    btns: [
+     ['undo', 'redo'],
+     ['formatting'],
+     ['strong', 'em', 'del'],
+     ['superscript', 'subscript'],
+     ['horizontalRule'],
+     ['unorderedList', 'orderedList'],
+     ['link'],
+     ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+     ['fullscreen']
+  ]
+  });
+    </script>
+
+</body>
+</html>

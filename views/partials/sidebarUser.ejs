@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="shortcut icon" href="">
+      <link rel="stylesheet" href="css/notie.min.css" />
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" />
+      <link rel="stylesheet" href="css/bootstrap.min.css" />
+      <script src="javascript/jquery.min.js"></script>
+      <script src="javascript/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css" />
+      <link rel="stylesheet" href="css/select2BootstrapTheme.css" />
+      <link rel="stylesheet" href="css/select2.min.css" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+      <link rel='stylesheet' href='css/style.css' />
+      <link rel='stylesheet' href='css/sidenav.css' />
+      <link rel='stylesheet' href='css/CommunityStyle.css' />
+      <link rel='stylesheet' href='css/CrazyGraphics.css' />
+      <script src="javascript/validation.js"></script>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" />
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css" />
+      <style type="text/css">
+          header{
+              height: 80px;
+              background-color: white;
+              padding: 10px
+          }
+          @media(max-width: 800px){
+              .mobile-responsive{
+                  display: none;
+              }
+          }
+      </style>
+  </head>
+
+<body>
+
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper" style="margin-top:60px">
+           <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+        
+             <li class="mobile-view-dp">
+               <div style="margin-right: 10px">
+                 <center>
+                    <img src="/Upload/Profile/1546519681658.jpg" style="height: 60px;width: 60px;border-radius:50%">
+                </center>
+                </div>
+             </li>
+        
+             <li class="onlyForPcNav">
+               <a  onclick="openSideNav()">
+                 <span class="fa-stack fa-lg pull-left">
+                   <i class="fa fa-bars fa-stack-1x "></i>
+                 </span>Makers
+               </a>
+             </li>
+        
+             
+               <li id="home-nav">
+                  <a href="/userProfile"><span class="fa-stack fa-lg pull-left">
+                    <i class="fa fa-home fa-stack-1x "></i></span>Profile
+                  </a>
+               </li>
+             
+        
+             
+        
+              
+                  <li id="add-user-nav">
+                    <a href="/communityUser"><span class="fa-stack fa-lg pull-left">
+                      <i class="fa fa-plus-square fa-stack-1x "></i></span>
+                      Community
+                    </a>
+                  </li>
+              
+        
+              <li id="change-password-nav">
+                <a href="/changePass"><span class="fa-stack fa-lg pull-left">
+                  <i class="fa fa-lock fa-stack-1x "></i></span>
+                  Change Password
+                </a>
+              </li>
+        
+              <li>
+                 <a href="/logout"><span class="fa-stack fa-lg pull-left">
+                   <i class="fa fa-sign-out-alt fa-stack-1x "></i></span>Logout
+                 </a>
+              </li>
+        
+           </ul>
+        </div>
+        <script type="text/javascript">
+           $("#menu-toggle").click(function(e) {
+              e.preventDefault();
+              $("#wrapper").toggleClass("toggled");
+           });
+        
+           $("#menu-toggle-pc").click(function(e) {
+              e.preventDefault();
+              $("#wrapper").toggleClass("toggled-pc");
+              $('#menu ul').hide();
+           });
+        
+        //----------------------On Hoover or onclick menuBar-------------------------------
+          function openSideNav(){
+              $("#wrapper").toggleClass("toggled-pc");
+              $('#menu ul').hide();
+          }
+           // $("#sidebar-wrapper").hover(function(){
+           //   $("#wrapper").toggleClass("toggled-pc");
+           //   $('#menu ul').hide();
+           // });
+        //----------------------On Hoover or onclick menuBar-------------------------------
+        
+           function initMenu() {
+              // $("#wrapper").toggleClass("toggled-pc");
+              // $('#menu ul').hide();
+        
+              $('#menu ul').hide();
+              $('#menu ul').children('.current').parent().show();
+              $('#menu li a').click(
+                 function() {
+                    var checkElement = $(this).next();
+                    if ((checkElement.is('ul')) && (checkElement.is(':visible'))) {
+                       return false;
+                    }
+                    if ((checkElement.is('ul')) && (!checkElement.is(':visible'))) {
+                       $('#menu ul:visible').slideUp('normal');
+                       checkElement.slideDown('normal');
+                       return false;
+                    }
+                 }
+              );
+           }
+           $(document).ready(function() {
+              initMenu();
+           });
+        </script>
+        
+    
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="">
+        <link rel="stylesheet" href="css/notie.min.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" />
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <script src="javascript/jquery.min.js"></script>
+        <script src="javascript/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css" />
+        <link rel="stylesheet" href="css/select2BootstrapTheme.css" />
+        <link rel="stylesheet" href="css/select2.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+        <link rel='stylesheet' href='css/style.css' />
+        <link rel='stylesheet' href='css/sidenav.css' />
+        <link rel='stylesheet' href='css/CommunityStyle.css' />
+        <link rel='stylesheet' href='css/CrazyGraphics.css' />
+        <script src="javascript/validation.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css" />
+        <style type="text/css">
+            header{
+                height: 80px;
+                background-color: white;
+                padding: 10px
+            }
+            @media(max-width: 800px){
+                .mobile-responsive{
+                    display: none;
+                }
+            }
+        </style>
+    
+    </head>
+    <body>
+    
+        
+      <nav class="navbar navbar-default-bar no-margin navbar-bar-head-fixed" id="nav-header">
+    
+          <div class="navbar-header fixed-brand">
+             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" id="menu-toggle">
+                         <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+                    </button>
+            
+              <span class="label label-success mobile" style="margin-top:20px;float:right"><Admin></span>
+            
+             <a class="navbar-brand" href="#">Makers</a>
+          </div>
+    
+                <div class="none-mobile-view-dp">
+                         <img src="uploads/<%= typeof data[0].img != 'undefined' ? data[0].img : '' %>" style="height: 40px" class="profilePic">
+              
+                         <% if(post == 1) { var p = "Admin"; } else if ( post == 2 ) { var p = "Community Builder"; } else { var p="User"; } %>
+
+                 <span class="label label-success" style="float:right;margin-top:22px;margin-left:5px"><%= p %></span>
+              
+              <span class="label label-warning" style="float:right;margin-top:22px;"><%= name %></span>
+                 </div>
+    
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+             <ul class="nav navbar-nav">
+                <li class="active">
+                  
+                     <button class="navbar-toggle collapse in" data-toggle="collapse" id="menu-toggle-pc">
+                                       <span class="glyphicon glyphicon-th-large" aria-hidden="true">
+                                       </span>
+                     </button>
+                   
+                </li>
+             </ul>
+          </div>
+    </nav>
+
+    </body>
+    </html>
+    

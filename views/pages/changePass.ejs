@@ -1,0 +1,51 @@
+<html>
+<head>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+</head>
+<body>
+		<%- include('../partials/header', {post: data[0].post,name:data[0].username,data:data}); %>
+		<% if(data[0].post == 2) { %>
+		  <% include ../partials/sidebarBuilder %>
+		 <% } else if(data[0].post == 3){ %>
+		  <% include ../partials/sidebarUser %>
+		  <% } else { %>
+		  <% include ../partials/sidebar %>
+		  <% } %>
+	    
+
+<div class="container" style="text-align:center; width: 50%; padding-top: 5%;">
+<center><h1>Change Password</h1><center>
+<p class="text-center">Use the form below to change your password. Your password cannot be the same as your username.</p>
+<form method="post" id="passwordForm" action="/changePass">
+<input type="password" class="input-lg form-control" name="password" id="password" placeholder="Enter Current Password" autocomplete="off" required>
+<input type="password" class="input-lg form-control" name="pass1" id="pass1" placeholder="New Password" autocomplete="off" minlength="4" required>
+<input type="submit" class="col-xs-12 btn btn-primary btn-load btn-lg" data-loading-text="Changing Password..." value="Change Password">
+</form>
+</div>
+
+<footer>
+        <% include ../partials/footer %>
+</footer>
+
+<script>
+    $("input[type=password]").keyup(function(){
+    var ucase = new RegExp("[A-Z]+");
+	var lcase = new RegExp("[a-z]+");
+	var num = new RegExp("[0-9]+");
+	
+	if($("#password").val().length >= 4){
+		$("#8char").removeClass("glyphicon-remove");
+		$("#8char").addClass("glyphicon-ok");
+		$("#8char").css("color","#00A41E");
+	}else{
+		$("#8char").removeClass("glyphicon-ok");
+		$("#8char").addClass("glyphicon-remove");
+		$("#8char").css("color","#FF0004");
+	}
+});
+</script>
+</body>
+</html>

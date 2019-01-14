@@ -1,0 +1,365 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="shortcut icon" href="">
+            <link rel="stylesheet" href="css/notie.min.css" />
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" />
+            <link rel="stylesheet" href="css/bootstrap.min.css" />
+            <script src="javascript/jquery.min.js"></script>
+            <script src="javascript/bootstrap.min.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css" />
+            <link rel="stylesheet" href="css/select2BootstrapTheme.css" />
+            <link rel="stylesheet" href="css/select2.min.css" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+            <link rel='stylesheet' href='css/style.css' />
+            <link rel='stylesheet' href='css/sidenav.css' />
+            <link rel='stylesheet' href='css/CommunityStyle.css' />
+            <link rel='stylesheet' href='css/CrazyGraphics.css' />
+            <script src="javascript/validation.js"></script>
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css" />
+            <style type="text/css">
+                header{
+                    height: 80px;
+                    background-color: white;
+                    padding: 10px
+                }
+                @media(max-width: 800px){
+                    .mobile-responsive{
+                        display: none;
+                    }
+                }
+            </style>
+            
+    </head>    
+    <body>
+  
+        <%- include('../partials/header', {post: 2,name:d[0].username,data:d}); %>
+        <% include ../partials/sidebarBuilder %>
+
+  <div id="page-content-wrapper" style="padding:0;margin-top:60px"> <!--Margin Top is new-->
+           <div class="container-fluid page-content-div" style="padding:0">
+              <div class="row">
+                 <div class="col-lg-12 scoll-possible" style="padding:0">
+  
+  
+  
+  <div class="community-header-top communityheader-profile-mobile" style="padding-top:6px;position:relative;">
+      <div class="container pc">
+      
+  </div>
+      <center>
+          <div class="communityprofile-name-mobile" style="max-height:40px;overflow:scroll">
+            <a href="/community/communityprofile/5ba5b046393e737dbe66f5d4" style="color:white">
+               <%= data[0].name %>
+            </a>
+          </div>
+      </center>
+  
+      <center>
+        <a href="/community/communityprofile/5ba5b046393e737dbe66f5d4">
+          <img src="uploads/<%= typeof data[0].img != 'undefined' ? data[0].img : '' %>" class="mobile img-communityprofile-pic allSides" style="background:#fff" />
+        </a>
+      </center>
+  
+  </div>
+  
+  <div class="container community-profile-conatiner">
+  <div class="col-sm-2 col-xs-12 center-mobile pc">
+  <a href="/community/communityprofile/5ba5b046393e737dbe66f5d4">
+    <img src="uploads/<%= typeof data[0].img != 'undefined' ? data[0].img : '' %>" class="img-communityprofile-pic allSides" style="background:#fff" />
+  </a>
+  </div>
+  
+  <div class="col-sm-8 communityprofile-name-pc">
+    <a href="/community/communityprofile/5ba5b046393e737dbe66f5d4" class="communityprofile-name-pc">
+      <%= data[0].name %>
+    </a>
+  </div>
+  
+  
+  <div class="col-sm-2 col-xs-12 center-mobile" style="padding-top:10px;float:right">
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle commuity-profile-menu-btn" type="button" data-toggle="dropdown">
+      <i class="fa fa-bars"></i>
+    </button>
+    <ul class="dropdown-menu custom-commuity-dropdown dropdown-menu-right" style="margin-top:40px">
+  
+      
+        <li>
+            <a href="/community/discussion/5ba5b046393e737dbe66f5d4" class="community-profile-option-btn">
+              Discussions
+            </a>
+        </li>
+      
+  
+      
+        <li>
+            <a href="/manageCommunity?list=user&name=<%= data[0].name %>" class="community-profile-option-btn">
+              Manage Community
+            </a>
+        </li>
+      
+  
+        <li>
+            <a href="/communityProfile?name=<%= data[0].name%>&arrive=c" class="community-profile-option-btn">
+              Community Profile
+            </a>
+        </li>
+  
+        <li>
+            <a href="/memberList?name=<%= data[0].name %>" class="community-profile-option-btn">
+              Community Members
+            </a>
+        </li>
+  
+      </ul>
+  </div>
+  </div>
+  
+  </div>
+  <center>
+      <hr style="border-top:2px solid #E6E6E6;width:85%;margin-top:0">
+  </center>
+  
+  
+  <!--=========================Message For Rejection==================================-->
+  <div class="modal fade" id="popUpManageCommunityMessage" role="dialog" style="z-index:9999">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title" id="mailheader">Reject Message</h4>
+          </div>
+          <div class="modal-body">
+          <!------------------------------------------------------------------------------------>
+          <div class="form-horizontal"> <!-- form -->
+            <div class="form-group">
+              <div class="col-sm-12">
+                <center>
+                  <p id="fullNameMessagePop"></p>
+                </center>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12"><!--Body-->
+                <textarea type="text" class="form-control" id="messageBoxPop" style="resize: none;height:200px" required></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button class="btn btn-default" id="sendButtonPop" style="float:right">Send And Reject</button>
+              </div>
+            </div>
+          </div>
+          <!---------------------------------------------------------------------------------->
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  <div class="container">
+  <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12" style="padding-bottom:5px;border-bottom:1px solid #c4c4c4">
+    <nonLink class="manageCommunity-head-btn" style="cursor: context-menu;">
+      Manage Community
+    </nonLink>
+    <a href="/inviteUser" style="float:right;font-weight:600">
+      Invite Users
+    </a>
+    
+    <a class="pc" href="/community/editcommunity/5ba5b046393e737dbe66f5d4" style="float:right;font-weight:600;margin-right:15px">
+      Edit Community
+    </a>
+    
+  </div>
+  <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12" style="padding:10px 0 0 0;">
+  
+    <div class="col-sm-3 manageCommunity-commuity-div" style="padding:0">
+      
+        <div class="panel-heading allSidesSoft center-all mobile" style="background:#fff;margin-bottom:5px">
+            <a class="btn btn-primary editcommunity-btn">
+              Edit Commuity
+            </a>
+        </div>
+      
+      <div class="panel-body allSidesSoft" style="background:#fff">
+        <span style="color:grey"><a href="/manageCommunity?list=user&name=<%= data[0].name %>" id="users" name="users">Users(<%= data[0].members.length-1 %>)</a></span>
+          <br>
+          
+          <span style="color:grey"><a href="/manageCommunity?list=admin&name=<%= data[0].name %>" id="admins" name="admins">Admins(<%= data[0].admin.length %>)</a></span>
+          <br>
+          
+          <span style="color:grey"><a href="/manageCommunity?list=request&name=<%= data[0].name %>" id="request" name="request">Requests(<%= data[0].request.length %>)</a></span>
+          <br>  
+
+          <span style="color:grey"><a href="/manageCommunity?list=invite&name=<%= data[0].name %>" id="invite" name="invite">Invite(<%= data[0].invite.length %>)</a></span>
+          <br>
+          
+      </div>
+      <br />
+    </div>
+    <div class="col-sm-9">
+  <!--list of selected users-->
+   
+  <% if( a == 1 ) { %>
+  
+<% if(data[0].members.length-1 == 0) { %>
+  <div id='comlist' class="manageCommunity-head-btn" style="cursor: context-menu; padding-bottom: 2%; color:cadetblue">
+    <p>No User Found</p>
+        </div>
+<% } else { %>
+  <% for(var i=0; i<data[0].members.length; i++) { %> 
+  <% if(data[0].members[i].username != data[0].owner ) { %>
+    <div id='comlist' class="manageCommunity-head-btn" style="cursor: context-menu; padding-bottom: 2%; color:cadetblue">
+      <%= data[0].members[i].username %>
+      <a href="/removeFromComm?name=<%= data[0].name %>&uname=<%= data[0].members[i].username %>&umail=<%= data[0].members[i].email %>"  style="float:right;font-weight:600">
+        Remove
+      </a>
+      
+      <a class="pc" href="/community/editcommunity/5ba5b046393e737dbe66f5d4" style="float:right;font-weight:600;margin-right:15px">
+        Promote
+      </a>
+          </div>
+
+          <% } %>
+          <% } %>
+          <% } %>
+    <% } else if ( a == 2 ) { %>
+
+      <% if(data[0].admin.length == 0) { %>
+        <div id='comlist' class="manageCommunity-head-btn" style="cursor: context-menu; padding-bottom: 2%; color:cadetblue">
+          <p>No User Found</p>
+              </div>
+      <% } else { %>
+
+      <% for(var i=0; i<data[0].admin.length; i++) { %> 
+          
+            <div id='comlist' class="manageCommunity-head-btn" style="cursor: context-menu; padding-bottom: 2%; color:cadetblue">
+              <%= data[0].admin[i].username %>
+              <% if(data[0].admin[i].username != data[0].owner ) { %>
+              <a href="/community/invite/5ba5b046393e737dbe66f5d4"  style="float:right;font-weight:600">
+                Remove
+              </a>
+              
+              <a class="pc" href="/community/editcommunity/5ba5b046393e737dbe66f5d4" style="float:right;font-weight:600;margin-right:15px">
+                Promote
+              </a>
+                  </div>
+        
+                  <% } %>
+                  <% } %>
+                  <% } %>
+      <% } else if ( a == 3 ) { %>
+
+        <% if(data[0].request.length == 0) { %>
+          <div id='comlist' class="manageCommunity-head-btn" style="cursor: context-menu; padding-bottom: 2%; color:cadetblue">
+            <p>No User Found</p>
+                </div>
+        <% } else { %>
+
+        <% for(var i=0; i<data[0].request.length; i++) { %> 
+          
+            <div id='comlist' class="manageCommunity-head-btn" style="cursor: context-menu; padding-bottom: 2%; color:cadetblue">
+              <%= data[0].request[i].username %>
+              <a href="/editCommunity?uname=<%=data[0].request[i].username%>&umail=<%=data[0].request[i].email%>&action=accept&name=<%= data[0].name %>"  style="float:right;font-weight:600">
+                Accept
+              </a>
+              
+              <a class="pc" href="/editCommunity?uname=<%=data[0].request[i].username%>&umail=<%=data[0].request[i].email%>&action=decline&name=<%= data[0].name %>" style="float:right;font-weight:600;margin-right:15px">
+                Decline
+              </a>
+                  </div>
+        
+                  <% } %>
+                  <% } %>
+                  <% } else { %>
+
+                    <% if(data[0].invite.length == 0) { %>
+                      <div id='comlist' class="manageCommunity-head-btn" style="cursor: context-menu; padding-bottom: 2%; color:cadetblue">
+                        <p>No User Found</p>
+                            </div>
+                    <% } else { %>
+
+                    <% for(var i=0; i<data[0].invite.length; i++) { %> 
+          
+                        <div id='comlist' class="manageCommunity-head-btn" style="cursor: context-menu; padding-bottom: 2%; color:cadetblue">
+                          <%= data[0].invite[i].username %>
+                          <a href="/community/invite/5ba5b046393e737dbe66f5d4"  style="float:right;font-weight:600">
+                            Remove
+                          </a>
+                          
+                          <a class="pc" href="/community/editcommunity/5ba5b046393e737dbe66f5d4" style="float:right;font-weight:600;margin-right:15px">
+                            Promote
+                          </a>
+                              </div>
+                    
+                              <% } %>  
+                              <% } %>     
+                              <% } %>  
+
+    </div>
+  </div>
+  
+  
+  </div> <!--Header-->
+  <!-- <script src="javascript/Common.js"></script>
+  <script src="javascript/notie.min.js"></script>
+  <script src="javascript/CommunityHelper.js"></script>
+  <script src="javascript/ManageCommunity.js"></script> -->
+  
+  <script>
+  var selector = '.nav li';
+  $(selector).removeClass('active');
+  $('#community-panel-nav').addClass('active');
+
+function UserList()
+{
+  $.post('/manageCommunity', { name: "<%= data[0].name %>",list:"user" }, 
+    function(returnedData){
+         window.location.href="/manageCommunity";
+},'json').fail(function(){
+      console.log("error");
+});
+}
+
+function AdminList()
+{
+  $.post('/manageCommunity', { name: "<%= data[0].name %>",list:"admin" }, 
+    function(returnedData){
+         window.location.href="/manageCommunity";
+}).fail(function(){
+      console.log("error");
+});
+}
+
+function RequestList()
+{
+  $.post('/manageCommunity', { name: "<%= data[0].name %>",list:"request" }, 
+    function(returnedData){
+      window.location.href="/manageCommunity";
+},'json').fail(function(){
+      console.log("error");
+});
+}
+
+function InviteList()
+{
+  $.post('/manageCommunity', { name: "<%= data[0].name %>",list:"invite" }, 
+    function(returnedData){
+      window.location.href="/manageCommunity";
+},'json').fail(function(){
+      console.log("error");
+});
+}
+
+  </script>
+
+<footer>
+  <% include ../partials/footer %>
+</footer>
+
+</body>
+</html>
+    

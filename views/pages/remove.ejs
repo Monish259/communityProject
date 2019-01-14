@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<style>
+body {
+    padding-top:0px;
+}
+fieldset {
+    border: thin solid #ccc; 
+    border-radius: 4px;
+    padding: 20px;
+    padding-left: 40px;
+    background: #fbfbfb;
+}
+legend {
+   color: #678;
+}
+.form-control {
+    width: 95%;
+}
+label small {
+    color: #678 !important;
+}
+span.req {
+    color:maroon;
+    font-size: 112%;
+}
+</style>
+</head>
+<body>
+        <%- include('../partials/header', {post: 1,name:d[0].username,data:d}); %>
+                <% include ../partials/sidebar %>
+        <div class="container" style="text-align:center; width: 50%; padding-top: 5%; align-content: center;">        
+            <form action="/remove" method="post" id="fileForm" role="form">
+                <% if(data[0].working == 1) { %>
+                <% var a="Deactivate"; %>
+                <% } else { %>
+                <% var a="Activate"; %>
+                <% } %>
+            <fieldset><legend class="text-center"><%= a %> <%= data[0].username %></legend>
+
+           <input type="text" name="email" id="email" value="<%= data[0].email %>" hidden readonly>
+           <input type="text" name="working" id="working" value="<%= data[0].working %>" hidden readonly>
+
+            <div class="form-group">
+                <input class="btn btn-success" type="submit" name="button" id="button" value="<%= a %>">
+            </div>
+           
+            <div class="form-group">
+                <input class="btn btn-cancel" type="submit" name="button" id="button" value="Cancel">
+            </div>
+
+        </fieldset>
+            </form><!-- ends update form -->
+</div>
+<footer>
+        <% include ../partials/footer %>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="generator" content="Bootply" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="description" content="User information form snippet with timezones" />
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+        
+        <!--[if lt IE 9]>
+          <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <link rel="apple-touch-icon" href="/bootstrap/img/apple-touch-icon.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/bootstrap/img/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/bootstrap/img/apple-touch-icon-114x114.png">
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+
+
+
+
+
+
+
+        <!-- CSS code from Bootply.com editor -->
+        
+        <style type="text/css">
+            /* CSS used here will be applied after bootstrap.css */
+        </style>
+    </head>
+    
+    <!-- HTML code from Bootply.com editor -->
+    
+    <body >
+
+        <%- include('../partials/header', {post: data[0].post,name:data[0].username,data:data}); %>
+     
+
+        <div class="container">
+    <h1>Edit Profile</h1>
+  	<hr>
+	<div class="row">
+      <form class="form-horizontal" method="POST" action="/profileUpdate" enctype="multipart/form-data">
+      <!-- left column -->
+      <div class="col-md-3">
+        <div class="text-center">
+          <img src="<%= typeof file != 'undefined' ? file : '' %>" class="avatar img-circle" alt="avatar">
+          <h6>Upload a different photo...</h6>
+          
+          <input type="file" class="form-control" name="img" id="img" value="data[0].img">
+        </div>
+      </div>
+      
+      <!-- edit form column -->
+      <div class="col-md-9 personal-info">
+        <h3>Fill Correct info</h3>
+        
+        
+          <div class="form-group">
+            <label class="col-lg-3 control-label">User name:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value="<%= data[0].username %>" id="username" name="username" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-lg-3 control-label">City:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value="<%= data[0].city %>" id="city" name="city" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+                <label class="col-lg-3 control-label">Phone:</label>
+                <div class="col-lg-8">
+                  <input class="form-control" type="number" value="<%= data[0].phone %>" id="phone" name="phone" required>
+                </div>
+            </div>
+
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Email:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" id="email" name="email" value="<%= data[0].email %>" readonly>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Gender:</label>
+            <div class="col-lg-8">
+              <div class="ui-select">
+                <select id="gender" class="form-control" name="gender">
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-3 control-label">Interests:</label>
+            <div class="col-md-8">
+              <textarea class="form-control" type="text" id="interests" name="interests" value="janeuser" required></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-3 control-label">Tell more about your journey:</label>
+            <div class="col-md-8">
+              <textarea class="form-control" type="text" id="journey" name="journey" value="11111122333" required></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-3 control-label">What are your expectations from the communiity:</label>
+            <div class="col-md-8">
+              <textarea class="form-control" type="text" id="expect" name="expect" value="11111122333" required></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+              <input type="submit" class="btn btn-primary" id="button" name="button" value="Save Changes">
+              <span></span>
+              <input type="submit" class="btn btn-default" id="button" name="button" value="Cancel">
+            </div>
+          </div>
+
+        </form>
+      </div>
+  </div>
+</div>
+<hr>
+        
+        <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+
+
+        <script type='text/javascript' src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+        
+        <!-- JavaScript jQuery code from Bootply.com editor  -->
+        
+        <script type='text/javascript'>
+        
+        $(document).ready(function() {
+        
+            
+        
+        });
+        
+        </script>
+        
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-40413119-1', 'bootply.com');
+          ga('send', 'pageview');
+        </script>
+        
+        
+        <style>
+            .carbon-img {
+              float:left;
+              padding: 10px;
+            }
+            
+            .carbon-text {
+              color: #888;
+              display: inline-block;
+              font-family: Verdana;
+              font-size: 11px;
+              font-weight: 400;
+              height: 60px;
+              margin-left: 9px;
+              width: 142px;
+              padding-top: 10px;
+            }
+            
+            .carbon-text:hover {
+              color: #666;
+            }
+            
+            .carbon-poweredby {
+              color: #6A6A6A;
+              float: left;
+              font-family: Verdana;
+              font-size: 11px;
+              font-weight: 400;
+              margin-left: 10px;
+              margin-top: 13px;
+              text-align: center;
+            }
+        </style>
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+    </body>
+</html>

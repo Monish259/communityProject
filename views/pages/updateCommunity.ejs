@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<style>
+fieldset {
+    border: thin solid #ccc; 
+    border-radius: 4px;
+    padding: 20px;
+    padding-left: 40px;
+    background: #fbfbfb;
+}
+legend {
+   color: #678;
+}
+.form-control {
+    width: 95%;
+}
+label small {
+    color: #678 !important;
+}
+span.req {
+    color:maroon;
+    font-size: 112%;
+}
+    
+</style>
+</head>
+<body>
+        
+        <%- include('../partials/header', {post: 1,name:d[0].username,data:d}); %>
+        <% include ../partials/sidebar %>
+            
+        <div class="container" style="text-align:center; width: 50%; padding-top: 5%;">
+        
+            <form action="/updateCommunity" method="POST" id="fileForm" role="form">
+            <fieldset><legend class="text-center">Update <%= data[0].name %></legend>
+           <span> created by <%= data[0].owner %></span>
+            <div class="form-group">
+                <label for="email"> Community Name </label>
+                    <input required type="text" value="<%= data[0].name %>" name="cname" id="cname" class="form-control phone" maxlength="28" readonly/> 
+            </div>
+
+<% if(data[0].working == 1) { %>
+<% var status="Active"; %>
+<% } else { %>
+<% var status="Deactive"; %>
+<% } %>
+
+            <div class="form-group">
+                <label for="status"> Community Status </label><br/>
+                <select data-style="btn-info" name="status" class="form-control" id="status" selected="<%= status %>">
+                    
+                      <option value="active">Active</option>
+                        <option value="deactive">Deactive</option>
+                  
+                </select>
+              </div>
+
+            <div class="form-group">
+                <input class="btn btn-success" type="submit" name="button" id="button" value="Update">
+            </div>
+           
+            <div class="form-group">
+                <input class="btn btn-cancel" type="submit" name="button" id="button" value="Cancel">
+            </div>
+
+        </fieldset>
+            </form><!-- ends update form -->
+       </div>>
+       
+<footer>
+        <% include ../partials/footer %>
+    </footer>
+</body>
+</html>

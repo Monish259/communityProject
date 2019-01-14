@@ -1,0 +1,115 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+        <!------ Include the above in your HEAD tag ---------->
+    </head>   
+    <body>
+      
+        <%- include('../partials/header', {post: d[0].post,name:d[0].username,data:d}); %>
+      <% if(d[0].post == 2) { var f = 1; %>
+        <% include ../partials/sidebarBuilder %>
+       <% } else { var f = 2; %>
+        <% include ../partials/sidebarUser %>
+        <% } %>   
+                
+         
+        <div id="page-content-wrapper" style="padding:0;margin-top:60px"> <!--Margin Top is new-->
+          <div class="container-fluid page-content-div" style="padding:0">
+             <div class="row">
+                <div class="col-lg-12 scoll-possible" style="padding:0">
+
+                <div class="col-md-12" style="padding-top: 5%;">
+
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                            <li class="nav-item active">
+                        <div class="dropdown">
+                          <% if(f == 1) {  var act="/communityBuild"; } else { var act="/communityUser"; }%>
+                          <form action="<%= act %>" method="GET">
+                                <button class="btn btn-secondary" type="submit" id="comm" name="comm" aria-haspopup="true" aria-expanded="false">
+                                  comm
+                                </form>
+                              </div>
+                              </li>
+                              <li class="nav-item active">
+                                  <div class="dropdown" style="padding-left: 10%;">
+                                    <form action="/discover" method="GET">
+                                          <button class="btn btn-secondary" type="submit" id="comm" name="comm" aria-haspopup="true" aria-expanded="false">
+                                            find
+                                          </form>
+                                        </div>
+                                        </li>
+                              </ul>
+                        <form class="form-inline my-2 my-lg-0">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                              </form>
+                </nav>
+                      
+                <div class="col-sm-12">
+            <% for(var i=0;i<data.length;i++) { %>
+
+                <% var f=0; %>
+                <% for(var j=0;j<data[i].members.length;j++) { %>
+                <% if(data[i].members[j].email == d[0].email ) { %>
+                <% f=1; break; %>
+                <% } %>
+                <% } %>
+                
+                <% for(var j=0;j<data[i].request.length;j++) { %>
+                  <% if(data[i].request[j].email == d[0].email ) { %>
+                  <% f=1; break; %>
+                  <% } %>
+                  <% } %>
+
+
+          <% if(f == 0) { %>
+                 <div class="container">
+                        <div class="image-container">
+                            <img src="uploads/<%= typeof data[i].img != 'undefined' ? data[i].img : '' %>" id="user-profile-image" style="width: 100px; height: 100px" class="img-thumbnail allSidesSoft" />
+                        </div>
+                    
+                    <div class="search" id="search">
+                         <h3><a href="/communityProfile?name=<%= data[i].name %>&arrive=d"><%= data[i].name %></a></h3>
+                    </div>
+                    <% if(data[i].rule == 1) { %>
+                    <% var a="Join"; %>
+                    <% } else { %>
+                    <% var a="Ask to Join"; %>
+                    <% } %>
+                    
+                    <form class="form-inline my-2 my-lg-0" action="/discover" method="POST">
+                    <input class="form-control mr-sm-2" type="text" value="<%= data[i].name %>" id="name" name="name" hidden/>
+                    <input class="form-control mr-sm-2" type="text" value="<%= a %>" id="value" name="value" hidden/>
+                    <span style="float: right;"><input class="btn btn-success my-2 my-sm-0" id="button" type="submit" value="<%= a %>"></span>
+                    </form>
+                  </div>
+                  <br/>
+                  <% } %>
+            <% } %>
+                </div>  
+
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+            <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+            <footer>
+              <% include ../partials/footer %>
+            </footer>
+   </body>
+</html>
